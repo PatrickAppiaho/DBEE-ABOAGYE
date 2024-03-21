@@ -87,15 +87,15 @@ def main(
 
 if __name__ == "__main__":
     browsers_list = list(browsers.browsers())
-    skip_browsers = ["msie", "safari", 'chromium', 'opera', 'msedge']
-    # for i in range(0, 2):
-    for browser in browsers_list:
-        browser_type = browser['browser_type']
-        if browser_type in skip_browsers:
-            continue
-        print("====================================================")
-        print(f"Loop ==> {i} Opened -->  {browser_type}")
-        print("====================================================")
-        print(" ")
-        Thread(target=main, args=(BrowserEnum(browser_type),)).start()
-        sleep(5)
+    skip_browsers = ["msie", "safari", 'chromium', 'opera']
+    for i in range(0, 2):
+        for browser in browsers_list:
+            browser_type = browser['browser_type']
+            if browser_type in skip_browsers:
+                continue
+            print("====================================================")
+            print(f"Loop ==> {i} Opened -->  {browser_type}")
+            print("====================================================")
+            print(" ")
+            Thread(target=main, args=(BrowserEnum(browser_type),)).start()
+            sleep(5)
