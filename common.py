@@ -9,9 +9,13 @@ YOUTUBE_VIDEO_SHAREABLE_LINKS = [
 
 VIDEO_TITLE_AND_TIME = [
     ('Soothing Melodies for Stress Relief and Healing: Calm Mind, Body, and Soul | Nature Healing Haven', '1:00:25'),
-    # ('Nature Healing Haven: Your Sanctuary for Serenity', '0:54'),
-    ("A  Serene Journey | Nature Healing Haven", '54:51'),
-    ("A  Serene Journey: Explore Nature's Beauty with Relaxing Melodies | Nature Healing Haven", '54:51'),
+    ('Stress Relief and Healing | Nature Healing Haven', '1:00:25'),
+    ('Calm Mind, Body, and Soul | Nature Healing Haven', '1:00:25'),
+    ('Soothing Melodies | Nature Healing Haven', '1:00:25'),
+    ('Nature Healing Haven: Your Sanctuary for Serenity', '0:54'),
+    ("A Serene Journey | Nature Healing Haven", '54:51'),
+    ("A Serene Journey: Explore Nature's Beauty with Relaxing Melodies | Nature Healing Haven", '54:51'),
+    ("Nature's Beauty with Relaxing Melodies | Nature Healing Haven", '54:51'),
 
 ]
 
