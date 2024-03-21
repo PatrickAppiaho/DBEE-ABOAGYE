@@ -26,7 +26,7 @@ class Chrome(Browser):
     def setup_driver(self):
         """ Implementation of setup_driver abstract method. """
         self.chromium_browsers_config()
-        # driver_path = ChromeDriverManager(self.browser["version"]).install()
+        driver_path = ChromeDriverManager().install()
         #
         assert os.path.exists(
             self.browser["path"]), "The path to the Chrome binary is incorrect."
@@ -34,7 +34,7 @@ class Chrome(Browser):
         #     driver_path), "The path to the Chrome driver is incorrect."
 
         # driver = webdriver.Chrome(options=self.options)
-        driver = webdriver.Chrome(service=ChromeService(), options=self.options)
+        driver = webdriver.Chrome(service=ChromeService(driver_path), options=self.options)
         driver.execute_script(
             "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
 

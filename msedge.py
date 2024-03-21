@@ -27,14 +27,14 @@ class Edge(Browser, ABC):
         """ Implementation of setup_driver abstract method. """
         self.chromium_browsers_config()
 
-        # driver_path = EdgeChromiumDriverManager().install()
+        driver_path = EdgeChromiumDriverManager().install()
         #
         assert os.path.exists(
             self.browser["path"]), "The path to the Chrome binary is incorrect."
         # assert os.path.exists(
         #     driver_path), "The path to the Chrome driver is incorrect."
 
-        driver = webdriver.Edge(service=EdgeService(), options=self.options)
+        driver = webdriver.Edge(service=EdgeService(driver_path), options=self.options)
         # driver = webdriver.Edge(options=self.options)
         driver.execute_script(
             "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
