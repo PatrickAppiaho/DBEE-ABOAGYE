@@ -536,6 +536,21 @@ class Browser(metaclass=abc.ABCMeta):
         desired_quality = self.get_visible_element(By.XPATH, f"//span[contains(string(),'{quality}')]")
         desired_quality.click()
         print(f"Quality set to {quality}")
+        
+    def video_quality(self, speed: str = '1.5'):
+        """
+        :param speed:
+        :return:
+        """
+        settings_button = self.get_visible_element(By.CSS_SELECTOR, 'button.ytp-button.ytp-settings-button')
+        settings_button.click()
+        sleep(1)
+        quality_button = self.get_visible_element(By.XPATH, "//div[contains(text(),'Playback speed')]")
+        quality_button.click()
+        sleep(2)  # you can adjust this time
+        desired_quality = self.get_visible_element(By.XPATH, f"//span[contains(string(),'{speed}')]")
+        desired_quality.click()
+        print(f"Video speed set to {speed}")
 
     def mini_player(self):
         """
