@@ -72,7 +72,7 @@ def main(
     sleep(5)
     opened_browser.playback_speed(15)
     video_time = youtube_time_to_seconds(time_text)
-    sleep(video_time / 15)
+    sleep(video_time / 30)
     # opened_browser.searched_video(
     #     " ", choice(CHANNEL_NAMES), SearchEnum.RELATED)
     # sleep(30)
