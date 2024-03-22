@@ -9,7 +9,7 @@ on:
   #pull_request:
     #branches: [ "main" ]
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '*/18 * * * *'
 
 concurrency:
   group: ${{ github.ref }}
