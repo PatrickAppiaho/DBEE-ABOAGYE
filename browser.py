@@ -537,7 +537,7 @@ class Browser(metaclass=abc.ABCMeta):
         desired_quality.click()
         print(f"Quality set to {quality}")
         
-    def video_quality(self, speed: str = '1.5'):
+    def video_speed(self, speed: str = '1.5'):
         """
         :param speed:
         :return:
