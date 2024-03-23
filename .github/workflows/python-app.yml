@@ -8,8 +8,8 @@ on:
     branches: [ "main" ]
   #pull_request:
     #branches: [ "main" ]
-  schedule:
-    - cron: '*/18 * * * *'
+  #schedule:
+    #- cron: '*/18 * * * *'
 
 concurrency:
   group: ${{ github.ref }}
