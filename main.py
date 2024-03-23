@@ -66,7 +66,7 @@ def play_video(opened_browser, new_tab=False):
     opened_browser.search(title)
     sleep(5)
     opened_browser.play_searched_video(CHANNEL_NAME)
-    opened_browser.playback_speed(15)
+    opened_browser.playback_speed(2)
 
 
 def main(
@@ -85,13 +85,13 @@ def main(
     play_video(opened_browser)
     sleep(5)
     play_video(opened_browser, new_tab=True)
-    sleep(120)
+    sleep(300*5)
     opened_browser.close()
 
 
 if __name__ == "__main__":
     browsers_list = list(browsers.browsers())
-    skip_browsers = ["msie", "safari", 'chromium', 'opera', 'msedge', 'firefox']
+    skip_browsers = ["msie", "safari", 'chromium', 'opera', 'msedge']
     for browser in browsers_list:
         browser_type = browser['browser_type']
         if browser_type in skip_browsers:
