@@ -5,7 +5,7 @@ from time import sleep
 import browsers
 
 from chrome import Chrome
-from common import VIDEO_TITLE_AND_TIME, CHANNEL_NAME
+from common import VIDEO_TITLE_AND_TIME, CHANNEL_NAME, YOUTUBE_VIDEO_SHAREABLE_LINKS
 from enums import BrowserEnum
 from firefox import Firefox
 from msedge import Edge
@@ -48,6 +48,21 @@ def get_selected():
     return choice(VIDEO_TITLE_AND_TIME)
 
 
+def play_video(opened_browser, new_tab=False):
+    """
+    This function is responsible for playing the video.
+    """
+    title, time_text = get_selected()
+    if new_tab:
+        opened_browser.new_tab(choice(YOUTUBE_VIDEO_SHAREABLE_LINKS))
+        sleep(5)
+        opened_browser.driver.switch_to.window(opened_browser.driver.window_handles[1])
+    else:
+        opened_browser.search(title)
+    sleep(5)
+    opened_browser.play_searched_video(CHANNEL_NAME)
+
+
 def main(
         browser_t: BrowserEnum = BrowserEnum.CHROME
 ):
@@ -58,32 +73,15 @@ def main(
 
     if opened_browser is None:
         return
-
-    title, time_text = get_selected()
     sleep(5)
     opened_browser.close_other_tabs()
     sleep(2)
     opened_browser.get("https://youtube.com")
     sleep(3)
-    opened_browser.search(title)
+    play_video(opened_browser)
     sleep(5)
-    opened_browser.play_searched_video(CHANNEL_NAME)
-    #opened_browser.video_quality()
-    #sleep(5)
-    #opened_browser.video_speed()
-    sleep(5)
-    opened_browser.playback_speed(15)
-    video_time = youtube_time_to_seconds(time_text)
-    sleep(video_time / 30)
-    # opened_browser.searched_video(
-    #     " ", choice(CHANNEL_NAMES), SearchEnum.RELATED)
-    # sleep(30)
-    # opened_browser.mini_player()
-    # sleep(5)
-    # opened_browser.home()
-    # sleep(5)
-    # opened_browser.play_searched_video(
-    #     RANDOM_VIDEO_TIME, CHANNEL_NAME, SearchEnum.HOME)
+    play_video(opened_browser, new_tab=True)
+    sleep(120)
     opened_browser.close()
 
 

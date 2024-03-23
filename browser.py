@@ -12,7 +12,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-from common import SEARCH_LIMIT, YOUTUBE_VIDEO_SHAREABLE_LINKS
+from common import SEARCH_LIMIT, YOUTUBE_VIDEO_SHAREABLE_LINKS, lambda_options
 from dictionary import VideoInfo
 from enums import SearchEnum
 from exceptions import SeleniumException as SE
@@ -109,11 +109,9 @@ class Browser(metaclass=abc.ABCMeta):
         """
         This function sets up the configuration for the Chrome browsers.
         """
+        for argument in lambda_options:
+            self.options.add_argument(argument)
         self.options.binary_location = self.browser["path"]
-        self.options.add_argument("--no-sandbox")
-        self.options.add_argument("--disable-dev-shm-usage")
-        self.options.add_argument(
-            "--disable-blink-features=AutomationControlled")
         self.options.add_experimental_option(
             "excludeSwitches", ["enable-automation"])
         self.options.add_experimental_option('useAutomationExtension', False)
@@ -537,7 +535,7 @@ class Browser(metaclass=abc.ABCMeta):
         desired_quality.click()
         print(f"Quality set to {quality}")
         
-    def video_speed(self, speed: str = '1.5'):
+    def video_speed(self, speed: str = '2'):
         """
         :param speed:
         :return:
