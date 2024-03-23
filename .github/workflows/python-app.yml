@@ -6,7 +6,7 @@ name: Python application
 on:
   push:
     branches: [ "main" ]
-  #pull_request:
+    #pull_request:
     #branches: [ "main" ]
   schedule:
     - cron: '* */2 * * *'
@@ -24,15 +24,15 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-latest]
+        os: [ windows-latest, ubuntu-latest ]
         include:
-#          - os: ubuntu-latest
-#            pip-cache: ~/.cache/pip
-#          - os: macos-latest
-#            pip-cache: ~/Library/Caches/pip
+          - os: ubuntu-latest
+            pip-cache: ~/.cache/pip
+          #          - os: macos-latest
+          #            pip-cache: ~/Library/Caches/pip
           - os: windows-latest
             pip-cache: ~\AppData\Local\pip\Cache
-        python-version: ["3.11"]
+        python-version: [ "3.11" ]
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
@@ -47,14 +47,17 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
-#      - name: Setup chrome
-#        uses: browser-actions/setup-chrome@v1
+      - name: Setup chrome
+        uses: browser-actions/setup-chrome@v1
       - name: Setup geckodriver
         uses: browser-actions/setup-geckodriver@latest
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Setup firefox
         uses: browser-actions/setup-firefox@v1
+      - name: Install dependencies
+        run: |
+          make install-actions
       - name: Setup Chrome and chromedriver
         if: $ {{ matrix.os == 'ubuntu-latest' }}
         run: |
@@ -75,9 +78,6 @@ jobs:
           chromedriver -version
           which chromedriver
           which google-chrome
-      - name: Install dependencies
-        run: |
-          make install-actions
       - name: Run
         run: |
           make run
