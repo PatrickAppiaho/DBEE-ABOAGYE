@@ -53,14 +53,20 @@ def play_video(opened_browser, new_tab=False):
     This function is responsible for playing the video.
     """
     title, time_text = get_selected()
+    sleep(5)
     if new_tab:
-        opened_browser.new_tab(choice(YOUTUBE_VIDEO_SHAREABLE_LINKS))
-        sleep(5)
-        opened_browser.driver.switch_to.window(opened_browser.driver.window_handles[1])
+        opened_browser.new_tab("https://youtube.com")
+        sleep(10)
+        if opened_browser.driver.window_handles and len(opened_browser.driver.window_handles) > 1:
+            opened_browser.driver.switch_to.window(opened_browser.driver.window_handles[1])
+        sleep(2)
     else:
-        opened_browser.search(title)
+        opened_browser.driver.switch_to.window(opened_browser.driver.window_handles[0])
+        opened_browser.get("https://youtube.com")
+    opened_browser.search(title)
     sleep(5)
     opened_browser.play_searched_video(CHANNEL_NAME)
+    opened_browser.playback_speed(15)
 
 
 def main(
@@ -76,8 +82,6 @@ def main(
     sleep(5)
     opened_browser.close_other_tabs()
     sleep(2)
-    opened_browser.get("https://youtube.com")
-    sleep(3)
     play_video(opened_browser)
     sleep(5)
     play_video(opened_browser, new_tab=True)
@@ -87,7 +91,7 @@ def main(
 
 if __name__ == "__main__":
     browsers_list = list(browsers.browsers())
-    skip_browsers = ["msie", "safari", 'chromium', 'opera', 'msedge']
+    skip_browsers = ["msie", "safari", 'chromium', 'opera', 'msedge', 'firefox']
     for browser in browsers_list:
         browser_type = browser['browser_type']
         if browser_type in skip_browsers:
