@@ -5,10 +5,9 @@ from time import sleep
 import browsers
 
 from chrome import Chrome
-from common import VIDEO_TITLE_AND_TIME, CHANNEL_NAME, YOUTUBE_VIDEO_SHAREABLE_LINKS
+from common import VIDEO_TITLE_AND_TIME, CHANNEL_NAME
 from enums import BrowserEnum
 from firefox import Firefox
-from msedge import Edge
 
 
 def open_browser(browser_t: BrowserEnum):
@@ -18,7 +17,6 @@ def open_browser(browser_t: BrowserEnum):
     browser_mapping = {
         BrowserEnum.CHROME: Chrome,
         BrowserEnum.FIREFOX: Firefox,
-        BrowserEnum.EDGE: Edge
     }
 
     if browser_t in browser_mapping:
