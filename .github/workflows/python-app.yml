@@ -4,12 +4,12 @@
 name: Python application
 
 on:
-  # push:
-    # branches: [ "main" ]
+  push:
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-  # schedule:
-    #- cron: '* */2 * * *'
+  schedule:
+    - cron: '* */8 * * *'
 
 concurrency:
   group: ${{ github.ref }}
