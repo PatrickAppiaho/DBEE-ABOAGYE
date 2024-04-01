@@ -89,7 +89,7 @@ def main(
 
 if __name__ == "__main__":
     browsers_list = list(browsers.browsers())
-    skip_browsers = ["msie", "safari", 'chromium', 'opera', 'msedge']
+    skip_browsers = ["msie", "safari", 'chromium', 'opera', 'msedge', 'chrome']
     for browser in browsers_list:
         browser_type = browser['browser_type']
         if browser_type in skip_browsers:
